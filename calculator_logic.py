@@ -1,4 +1,6 @@
 import math
+from ast import parse
+from re import sub
 
 
 class CalculatorLogic:
@@ -26,23 +28,26 @@ class CalculatorLogic:
         else:
             self.equation += str(button_text)
 
+    import ast
+    import re
+
     def calculate_result(self):
         try:
-            # Check for division by zero
-            if "/0" in self.equation:
-                raise ZeroDivisionError
+            # Remove leading zeros from numbers
+            sanitized_equation = sub(r'\b0+(\d+)', r'\1', self.equation)
 
-            # Evaluate the expression
-            result = eval(self.equation)
+            parsed_equation = parse(sanitized_equation, mode='eval')
+            compiled_code = compile(parsed_equation, '<string>', 'eval')
+            result = eval(compiled_code)
 
-            # Update the entry if the result is a valid number
             if isinstance(result, (float, int)):
+                if math.isinf(result):
+                    raise ZeroDivisionError
                 self.clear_entry()
                 self.result = str(result)
                 self.equation = str(result)
             else:
                 raise ValueError("Invalid result type")
-
         except ZeroDivisionError:
             self.result = "Cannot divide by zero"
         except Exception as e:
