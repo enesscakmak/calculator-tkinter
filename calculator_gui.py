@@ -45,10 +45,9 @@ class Calculator:
         self.result_entry.config(state="normal")
         self.result_entry.delete(0, END)
         self.result_entry.insert(0, equation)
+        self.result_entry.config(state="readonly")
 
         self.entry.config(state="normal")
         self.entry.delete(0, END)
         self.entry.insert(0, equation)
         self.entry.config(state="readonly")
-
-
