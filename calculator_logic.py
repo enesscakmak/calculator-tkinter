@@ -28,10 +28,23 @@ class CalculatorLogic:
 
     def calculate_result(self):
         try:
-            result = str(eval(self.equation))
-            self.clear_entry()
-            self.result = result
-            self.equation = result
+            # Check for division by zero
+            if "/0" in self.equation:
+                raise ZeroDivisionError
+
+            # Evaluate the expression
+            result = eval(self.equation)
+
+            # Update the entry if the result is a valid number
+            if isinstance(result, (float, int)):
+                self.clear_entry()
+                self.result = str(result)
+                self.equation = str(result)
+            else:
+                raise ValueError("Invalid result type")
+
+        except ZeroDivisionError:
+            self.result = "Cannot divide by zero"
         except Exception as e:
             self.result = "Error"
 
