@@ -2,9 +2,9 @@
 
 A simple calculator application built with Python and Tkinter.
 
-
-
-https://github.com/enesscakmak/calculator-tkinter/assets/114193468/b2bea06b-00bb-4b87-b885-1a3081db10ab
+<p align="center">
+<img width="60%" height="70%" src="https://github.com/enesscakmak/calculator-tkinter/assets/114193468/ac3ccd70-bc71-4ce5-99ce-6d1268dcd288">
+</p>
 
 
 
